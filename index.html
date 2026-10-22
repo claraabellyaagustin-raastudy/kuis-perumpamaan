@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUIS PERUMPAMAAN YESUS</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sky-base': '#87CEEB',
+                        'sky-pastel': '#BFE8FF',
+                        'sky-light': '#EAF7FF',
+                        'text-dark': '#173B57',
+                        'accent-blue': '#4DA8DA',
+                        'deep-blue': '#0F2C43',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #87CEEB 0%, #BFE8FF 50%, #EAF7FF 100%);
+            min-height: 100vh;
+            color: #173B57;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Sky Clouds */
+        .cloud-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 100px;
+            filter: blur(1px);
+            animation: floatCloud linear infinite;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 50%;
+        }
+
+        .cloud-1 {
+            width: 180px;
+            height: 60px;
+            top: 10%;
+            animation-duration: 35s;
+        }
+        .cloud-1::before { width: 80px; height: 80px; top: -35px; left: 25px; }
+        .cloud-1::after { width: 60px; height: 60px; top: -25px; right: 25px; }
+
+        .cloud-2 {
+            width: 240px;
+            height: 75px;
+            top: 28%;
+            animation-duration: 48s;
+            animation-delay: -15s;
+            opacity: 0.8;
+        }
+        .cloud-2::before { width: 100px; height: 100px; top: -45px; left: 35px; }
+        .cloud-2::after { width: 80px; height: 80px; top: -35px; right: 35px; }
+
+        .cloud-3 {
+            width: 150px;
+            height: 50px;
+            top: 65%;
+            animation-duration: 40s;
+            animation-delay: -8s;
+            opacity: 0.5;
+        }
+        .cloud-3::before { width: 60px; height: 60px; top: -25px; left: 20px; }
+        .cloud-3::after { width: 50px; height: 50px; top: -20px; right: 20px; }
+
+        @keyframes floatCloud {
+            0% { transform: translateX(-300px); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(23, 59, 87, 0.12);
+        }
+
+        /* Button Press Animation */
+        .btn-bounce {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-bounce:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(77, 168, 218, 0.3);
+        }
+        .btn-bounce:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* Option Card Styling */
+        .option-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: 2px solid #E2E8F0;
+        }
+        .option-card:hover {
+            border-color: #4DA8DA;
+            background-color: #EAF7FF;
+        }
+        .option-card.selected {
+            border-color: #4DA8DA;
+            background-color: #D2EEFF;
+            box-shadow: 0 4px 12px rgba(77, 168, 218, 0.25);
+        }
+
+        /* Pulse Warning Timer */
+        @keyframes timerPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .timer-warning {
+            animation: timerPulse 0.6s infinite ease-in-out;
+            color: #E53E3E !important;
+            border-color: #FC8181 !important;
+            background-color: #FFF5F5 !important;
+        }
+
+        /* Accordion transition */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease-out;
+        }
+
+        /* Toast animation */
+        @keyframes slideDown {
+            from { transform: translate(-50%, -100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+        .toast-animate {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen relative">
+
+    <div class="cloud-bg" aria-hidden="true">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+    </div>
+
+    <header class="relative z-10 w-full py-4 px-4 sm:px-8 border-b border-white/40 bg-white/30 backdrop-blur-md">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="confirmReturnHome()">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-accent-blue shadow-md">
+                    <i class="fa-solid fa-book-bible text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold tracking-tight text-text-dark leading-tight">
+                        KUIS PERUMPAMAAN YESUS
+                    </h1>
+                    <p class="text-xs text-text-dark/70 font-medium">Edukasi Alkitab Interaktif</p>
+                </div>
+            </div>
+            
+            <button id="nav-home-btn" onclick="confirmReturnHome()" class="hidden sm:flex items-center gap-2 bg-white/80 hover:bg-white text-text-dark font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm shadow-sm transition">
+                <i class="fa-solid fa-house text-accent-blue"></i>
+                <span>Beranda</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="relative z-10 flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div id="toast" class="hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-red-500 text-white font-medium px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3 toast-animate text-sm">
+            <i class="fa-solid fa-circle-exclamation text-lg"></i>
+            <span id="toast-message">Silakan pilih salah satu jawaban terlebih dahulu.</span>
+        </div>
+
+        <!-- 1. HOME VIEW -->
+        <section id="view-home" class="w-full max-w-2xl mx-auto glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden my-auto">
+            <div class="absolute -top-12 -right-12 w-36 h-36 bg-sky-pastel/50 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-12 -left-12 w-36 h-36 bg-sky-base/30 rounded-full blur-2xl"></div>
+
+            <div class="relative z-10">
+                <!-- Creator Badge -->
+                <div class="inline-flex items-center gap-2 bg-sky-pastel/70 text-text-dark px-4 py-1.5 rounded-full text-xs font-semibold mb-6 shadow-sm border border-white">
+                    <i class="fa-solid fa-sparkles text-accent-blue"></i>
+                    <span>app kuis by clara abellya agustin</span>
+                </div>
+
+                <!-- Main Title & Subtitle -->
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-text-dark mb-2 tracking-tight">
+                    KUIS PERUMPAMAAN YESUS
+                </h2>
+                <p class="text-accent-blue font-semibold text-sm sm:text-lg mb-4">
+                    Uji Pemahamanmu tentang Perumpamaan Yesus
+                </p>
+
+                <!-- Description -->
+                <p class="text-text-dark/80 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto mb-8 bg-sky-light/80 p-4 rounded-2xl border border-sky-pastel/60">
+                    Siap menguji pemahamanmu? Jawab 10 pertanyaan menarik tentang perumpamaan Yesus, selesaikan setiap soal sebelum waktu habis, dan raih nilai terbaikmu!
+                </p>
+
+                <!-- Quiz Info Card Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-left mb-8">
+                    <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-sky-pastel/50 shadow-sm flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-sky-light text-accent-blue flex items-center justify-center shrink-0 font-bold text-sm">
+                            10
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-text-dark/60 font-semibold uppercase">Jumlah Soal</div>
+                            <div class="text-xs sm:text-sm font-bold text-text-dark">10 Pertanyaan</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-sky-pastel/50 shadow-sm flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-sky-light text-accent-blue flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-list-check text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-text-dark/60 font-semibold uppercase">Jenis Soal</div>
+                            <div class="text-xs sm:text-sm font-bold text-text-dark">Pilihan Ganda</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-sky-pastel/50 shadow-sm flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-sky-light text-accent-blue flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-cubes text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-text-dark/60 font-semibold uppercase">Opsi Jawaban</div>
+                            <div class="text-xs sm:text-sm font-bold text-text-dark">4 Pilihan (A-D)</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-sky-pastel/50 shadow-sm flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-stopwatch text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-text-dark/60 font-semibold uppercase">Waktu / Soal</div>
+                            <div class="text-xs sm:text-sm font-bold text-text-dark">15 Detik</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-sky-pastel/50 shadow-sm flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-bullseye text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-text-dark/60 font-semibold uppercase">Nilai / Soal</div>
+                            <div class="text-xs sm:text-sm font-bold text-text-dark">10 Poin</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 p-3 sm:p-4 rounded-2xl border border-sky-pastel/50 shadow-sm flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-trophy text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-text-dark/60 font-semibold uppercase">Nilai Maksimal</div>
+                            <div class="text-xs sm:text-sm font-bold text-text-dark">100 Poin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Button -->
+                <button onclick="startQuiz()" class="btn-bounce w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-accent-blue to-sky-base text-white font-bold text-base sm:text-lg rounded-2xl shadow-lg flex items-center justify-center gap-3 mx-auto border border-white/40">
+                    <span>MULAI KUIS</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. QUIZ VIEW -->
+        <section id="view-quiz" class="hidden w-full max-w-2xl mx-auto glass-card rounded-3xl p-5 sm:p-8 relative overflow-hidden my-auto">
+            <!-- Header Bar inside Quiz Card -->
+            <div class="flex items-center justify-between gap-3 mb-4 pb-4 border-b border-sky-pastel/60">
+                <div class="flex items-center gap-2">
+                    <span id="quiz-question-number" class="bg-sky-pastel/80 text-text-dark font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl border border-white">
+                        SOAL 1 DARI 10
+                    </span>
+                </div>
+
+                <!-- Timer Indicator -->
+                <div id="timer-box" class="flex items-center gap-2 bg-sky-light text-text-dark font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl border border-sky-pastel transition-all">
+                    <i class="fa-solid fa-clock text-accent-blue text-sm"></i>
+                    <span>WAKTU TERSISA: <strong id="timer-text" class="text-accent-blue">15</strong> DETIK</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-sky-light/80 rounded-full h-3 mb-6 overflow-hidden border border-sky-pastel/40 p-0.5">
+                <div id="progress-bar" class="bg-gradient-to-r from-accent-blue to-sky-base h-full rounded-full transition-all duration-300 w-[10%]"></div>
+            </div>
+
+            <!-- Question Text Card -->
+            <div class="bg-white/90 p-5 sm:p-6 rounded-2xl border border-sky-pastel/60 shadow-sm mb-6">
+                <h3 id="question-text" class="text-base sm:text-lg font-bold text-text-dark leading-relaxed">
+                    Pertanyaan akan muncul di sini...
+                </h3>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                <!-- Options rendered dynamically -->
+            </div>
+
+            <!-- Navigation Button -->
+            <div class="flex items-center justify-between gap-4 pt-2">
+                <button onclick="confirmReturnHome()" class="px-4 py-2.5 rounded-xl bg-white/70 hover:bg-white text-text-dark text-xs sm:text-sm font-semibold border border-sky-pastel transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Beranda
+                </button>
+                <button id="next-btn" onclick="handleNextClick()" class="btn-bounce px-8 py-3 bg-gradient-to-r from-accent-blue to-sky-base text-white font-bold text-sm sm:text-base rounded-xl shadow-md flex items-center gap-2 ml-auto">
+                    <span id="next-btn-text">LANJUT</span>
+                    <i id="next-btn-icon" class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. RESULT VIEW -->
+        <section id="view-result" class="hidden w-full max-w-2xl mx-auto glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden my-auto">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-tr from-amber-300 to-yellow-100 text-amber-500 shadow-inner mb-4 border-2 border-amber-200">
+                <i class="fa-solid fa-trophy text-4xl"></i>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-text-dark mb-1">KUIS SELESAI!</h2>
+            <p class="text-xs sm:text-sm text-text-dark/70 mb-6">Berikut adalah ringkasan hasil pencapaianmu</p>
+
+            <!-- Big Score Display -->
+            <div class="bg-white/90 border border-sky-pastel rounded-3xl p-6 max-w-xs mx-auto shadow-sm mb-6">
+                <div class="text-xs text-text-dark/60 font-bold uppercase tracking-wider mb-1">NILAI AKHIR</div>
+                <div class="text-4xl sm:text-6xl font-black text-accent-blue my-1 tracking-tight">
+                    <span id="score-display">0</span><span class="text-2xl sm:text-3xl text-text-dark/40 font-bold">/100</span>
+                </div>
+                <div id="percentage-badge" class="inline-block px-3 py-1 rounded-full bg-sky-light text-accent-blue text-xs font-extrabold mt-2">
+                    Persentase Keberhasilan: 0%
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-3 max-w-md mx-auto mb-6">
+                <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-2xl text-emerald-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-500 text-base"></i>
+                        <span class="text-xs font-semibold">Benar</span>
+                    </div>
+                    <span id="correct-count" class="font-bold text-sm sm:text-base">0</span>
+                </div>
+
+                <div class="bg-rose-50 border border-rose-200 p-3 rounded-2xl text-rose-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-circle-xmark text-rose-500 text-base"></i>
+                        <span class="text-xs font-semibold">Salah / Kosong</span>
+                    </div>
+                    <span id="wrong-count" class="font-bold text-sm sm:text-base">0</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Feedback Box -->
+            <div id="feedback-card" class="bg-sky-light/80 border border-sky-pastel p-4 rounded-2xl max-w-md mx-auto mb-8 text-xs sm:text-sm font-medium text-text-dark leading-relaxed">
+                Pesan evaluasi akan ditampilkan di sini.
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button onclick="restartQuiz()" class="btn-bounce w-full sm:w-auto px-6 py-3 bg-accent-blue text-white font-bold text-xs sm:text-sm rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>ULANGI KUIS</span>
+                </button>
+                <button onclick="showDiscussionView()" class="btn-bounce w-full sm:w-auto px-6 py-3 bg-white hover:bg-sky-light text-text-dark font-bold text-xs sm:text-sm rounded-xl border border-sky-pastel shadow-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-list-ol text-accent-blue"></i>
+                    <span>LIHAT PEMBAHASAN</span>
+                </button>
+                <button onclick="returnToHome()" class="btn-bounce w-full sm:w-auto px-6 py-3 bg-white/70 hover:bg-white text-text-dark font-bold text-xs sm:text-sm rounded-xl border border-sky-pastel shadow-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-house"></i>
+                    <span>BERANDA</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. DISCUSSION VIEW -->
+        <section id="view-discussion" class="hidden w-full max-w-3xl mx-auto glass-card rounded-3xl p-5 sm:p-8 my-auto">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 mb-6 border-b border-sky-pastel">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-text-dark flex items-center gap-2">
+                        <i class="fa-solid fa-book-open text-accent-blue"></i>
+                        <span>Pembahasan Soal</span>
+                    </h2>
+                    <p class="text-xs text-text-dark/70">Pelajari kunci jawaban dan penjelasannya</p>
+                </div>
+
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <button onclick="restartQuiz()" class="btn-bounce flex-1 sm:flex-none px-4 py-2 bg-accent-blue text-white font-semibold text-xs rounded-xl shadow-sm flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Ulangi</span>
+                    </button>
+                    <button onclick="returnToHome()" class="btn-bounce flex-1 sm:flex-none px-4 py-2 bg-white text-text-dark font-semibold text-xs rounded-xl border border-sky-pastel shadow-sm flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Beranda</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Accordion Items List -->
+            <div id="discussion-list" class="space-y-4 mb-8">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <div class="flex items-center justify-center gap-4 pt-2">
+                <button onclick="restartQuiz()" class="btn-bounce px-6 py-3 bg-accent-blue text-white font-bold text-xs sm:text-sm rounded-xl shadow-md flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>ULANGI KUIS</span>
+                </button>
+                <button onclick="returnToHome()" class="btn-bounce px-6 py-3 bg-white text-text-dark font-bold text-xs sm:text-sm rounded-xl border border-sky-pastel shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-house"></i>
+                    <span>KEMBALI KE BERANDA</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- CONFIRMATION MODAL (FINISHED QUIZ) -->
+        <div id="modal-finish" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-sky-pastel transform transition-all">
+                <div class="w-14 h-14 bg-sky-light text-accent-blue rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+                <h3 class="text-lg font-bold text-text-dark mb-2">Selesaikan Kuis?</h3>
+                <p class="text-xs sm:text-sm text-text-dark/70 mb-6">Apakah kamu yakin ingin menyelesaikan kuis?</p>
+                <div class="flex items-center gap-3">
+                    <button onclick="closeFinishModal()" class="flex-1 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-text-dark font-bold text-xs sm:text-sm transition">
+                        KEMBALI
+                    </button>
+                    <button onclick="submitQuizConfirmed()" class="flex-1 py-2.5 rounded-xl bg-accent-blue hover:bg-sky-base text-white font-bold text-xs sm:text-sm shadow-md transition">
+                        YA, SELESAIKAN
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONFIRMATION MODAL (EXIT TO HOME) -->
+        <div id="modal-exit" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-sky-pastel">
+                <div class="w-14 h-14 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3 class="text-lg font-bold text-text-dark mb-2">Kembali ke Beranda?</h3>
+                <p class="text-xs sm:text-sm text-text-dark/70 mb-6">Kuis sedang berlangsung. Progres saat ini akan hilang jika kamu kembali ke beranda.</p>
+                <div class="flex items-center gap-3">
+                    <button onclick="closeExitModal()" class="flex-1 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-text-dark font-bold text-xs sm:text-sm transition">
+                        BATAL
+                    </button>
+                    <button onclick="executeReturnHome()" class="flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs sm:text-sm shadow-md transition">
+                        YA, KELUAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative z-10 w-full py-4 text-center text-xs text-text-dark/70 border-t border-white/40 bg-white/20 backdrop-blur-sm mt-auto">
+        <p>Kuis Perumpamaan Yesus &bull; <strong>app kuis by clara abellya agustin</strong> &bull; 2026</p>
+    </footer>
+
+    <script>
+        /* ----------------------------------------------------
+           13. STRUKTUR DATA SOAL (PERUMPAMAAN YESUS)
+           ---------------------------------------------------- */
+        const quizData = [
+            {
+                id: 1,
+                question: "Mengapa Yesus menggunakan perumpamaan dalam pengajaran-Nya?",
+                options: {
+                    A: "Agar pengajaran-Nya hanya dipahami oleh kelompok tertentu",
+                    B: "Untuk menggambarkan kedalaman dan kebenaran ilahi melalui analogi yang mudah dipahami",
+                    C: "Karena Yesus menghindari mengajar di depan orang banyak",
+                    D: "Untuk membingungkan para pemungut cukai dan ahli Taurat"
+                },
+                answer: "B",
+                explanation: "Yesus menggunakan perumpamaan untuk menyampaikan kebenaran ilahi dan rahasia Kerajaan Allah melalui gambaran kehidupan sehari-hari yang konkret sehingga mudah dipahami oleh orang-orang yang membuka hatinya."
+            },
+            {
+                id: 2,
+                question: "Berikut ini yang bukan termasuk dalam Tiga Perumpamaan Besar pada Injil Lukas adalah...",
+                options: {
+                    A: "Perumpamaan tentang orang Samaria yang berbelaskasih",
+                    B: "Perumpamaan tentang dua saudara (anak yang hilang)",
+                    C: "Perumpamaan tentang orang kaya dan Lazarus yang miskin",
+                    D: "Perumpamaan tentang penggarap kebun anggur"
+                },
+                answer: "D",
+                explanation: "Tiga Perumpamaan Besar yang khas dan penting dalam Injil Lukas berfokus pada belas kasih Allah dan sesama, yaitu Orang Samaria yang Murah Hati, Anak yang Hilang (Dua Saudara), dan Orang Kaya dan Lazarus. Perumpamaan penggarap kebun anggur tidak termasuk dalam kelompok ini."
+            },
+            {
+                id: 3,
+                question: "Contoh dialektika dua saudara yang terdapat dalam Perjanjian Lama adalah...",
+                options: {
+                    A: "Kain dan Habel",
+                    B: "Musa dan Harun",
+                    C: "Daud dan Salomo",
+                    D: "Petrus dan Yohanes"
+                },
+                answer: "A",
+                explanation: "Dalam Perjanjian Lama (Kitab Kejadian), dialektika serta dinamika konflik dan hubungan antara dua saudara pertama kali digambarkan secara jelas melalui kisah Kain dan Habel."
+            },
+            {
+                id: 4,
+                question: "Dalam Injil Lukas 15:1–2, dialektika dua kubu saling berhadapan antara kelompok pemungut cukai (orang berdosa) dengan...",
+                options: {
+                    A: "Orang Samaria dan tentara Roma",
+                    B: "Orang Farisi dan ahli Taurat",
+                    C: "Para penggarap kebun anggur",
+                    D: "Para murid Yesus dan nelayan"
+                },
+                answer: "B",
+                explanation: "Dalam Lukas 15:1–2, orang-orang Farisi dan ahli Taurat bersungut-sungut karena merasa Yesus menyambut dan makan bersama dengan kelompok pemungut cukai dan orang-orang berdosa."
+            },
+            {
+                id: 5,
+                question: "Bagaimana sikap si Ayah ketika si anak bungsu pulang dan mengaku bersalah?",
+                options: {
+                    A: "Menolaknya dan memintanya pergi kembali",
+                    B: "Menerimanya dengan tangan terbuka, memberinya jubah terbaik, dan membuat pesta kepulangan",
+                    C: "Menghukumnya untuk bekerja di ladang bersama si anak sulung",
+                    D: "Menyuruhnya menjadi hamba terlebih dahulu sebelum diakui sebagai anak"
+                },
+                answer: "B",
+                explanation: "Sang Ayah berlari menyambut anak bungsu dengan belas kasih, memeluknya, memberinya jubah terbaik, cincin, kasut, dan mengadakan perjamuan pesta sukacita atas kembalinya sang anak."
+            },
+            {
+                id: 6,
+                question: "Menurut Santo Agustinus, posisi Yesus dalam perumpamaan Anak yang Hilang digambarkan sebagai...",
+                options: {
+                    A: "Si anak bungsu yang menyesal",
+                    B: "Si anak sulung yang setia bekerja",
+                    C: "Lengan si ayah yang memeluk si anak bungsu",
+                    D: "Hamba yang menyembelih lembu tambun"
+                },
+                answer: "C",
+                explanation: "Santo Agustinus memberikan perenungan bahwa Kristus mewujud sebagai perpanjangan 'lengan' sang Bapa yang terulur penuh kasih untuk merangkul dan membawa kembali manusia yang berdosa."
+            },
+            {
+                id: 7,
+                question: "Apa yang dirasakan oleh si anak sulung ketika menyadari kepulangan adiknya dipestakan oleh si Ayah?",
+                options: {
+                    A: "Sangat bahagia karena adiknya telah kembali",
+                    B: "Marah, iri, dan merasa diperlakukan tidak adil",
+                    C: "Acuh tak acuh dan tetap melanjutkan pekerjaannya",
+                    D: "Merasa bersalah karena sempat merindukan adiknya"
+                },
+                answer: "B",
+                explanation: "Si anak sulung menjadi marah dan menolak masuk ke tempat pesta karena ia merasa iri dan menganggap dirinya yang selalu setia bekerja tidak pernah dihargai seistimewa adiknya."
+            },
+            {
+                id: 8,
+                question: "Hal utama yang belum disadari oleh si anak sulung adalah bahwa sukacita terbesar sebenarnya terletak pada...",
+                options: {
+                    A: "Memiliki banyak warisan dan ternak tambun",
+                    B: "Pesta makan-makan bersama teman-temannya",
+                    C: "Hidup bersama dengan si ayah yang baik",
+                    D: "Pergi berfoya-foya ke negeri yang jauh"
+                },
+                answer: "C",
+                explanation: "Sang Ayah mengingatkan si anak sulung: 'Anakku, engkau selalu bersama-sama dengan aku, dan segala kepunyaanku adalah kepunyaanmu.' Sukacita sejati adalah kebersamaan dan hubungan dengan Bapa."
+            },
+            {
+                id: 9,
+                question: "Intisari dari perumpamaan Yesus adalah berupa...",
+                options: {
+                    A: "Undangan Allah kepada manusia untuk menjawab 'Ya' dan melaksanakannya dengan penuh sukacita",
+                    B: "Larangan keras bagi anak bungsu untuk meminta harta warisan",
+                    C: "Anjuran agar manusia selalu menimbun harta kekayaan",
+                    D: "Perintah untuk menghukum orang-orang yang berbuat salah"
+                },
+                answer: "A",
+                explanation: "Intisari pengajaran Yesus dalam perumpamaan adalah panggilan kasih Allah yang mengundang setiap manusia untuk menjawab 'Ya' kepada Kerajaan Allah dan menghidupinya dengan sukacita."
+            },
+            {
+                id: 10,
+                question: "Agar manusia dapat selamat dan memperoleh hidup kekal, manusia harus bersandar pada tiga hal, yaitu...",
+                options: {
+                    A: "Harta, Pesta, dan Jabatan",
+                    B: "Hukum, Aturan, dan Tradisi",
+                    C: "Iman, Harapan, dan Kasih",
+                    D: "Kebijaksanaan, Keadilan, dan Keberanian"
+                },
+                answer: "C",
+                explanation: "Tiga pilar utama keutamaan Kristiani bagi keselamatan hidup beriman adalah Iman, Harapan, dan Kasih (1 Korintus 13:13)."
+            }
+        ];
+
+        /* ----------------------------------------------------
+           APPLICATION STATE VARIABLES
+           ---------------------------------------------------- */
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null); // stores 'A','B','C','D' or null
+        let isQuestionLocked = false;
+        let timerSeconds = 15;
+        let timerInterval = null;
+        let autoNextTimeout = null;
+
+        /* ----------------------------------------------------
+           STREAMING_CHUNK:Defining core navigation & lifecycle functions...
+           ---------------------------------------------------- */
+        function showView(viewId) {
+            document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-quiz').classList.add('hidden');
+            document.getElementById('view-result').classList.add('hidden');
+            document.getElementById('view-discussion').classList.add('hidden');
+
+            document.getElementById(viewId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            isQuestionLocked = false;
+            showView('view-quiz');
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function restartQuiz() {
+            clearIntervalsAndTimers();
+            startQuiz();
+        }
+
+        function returnToHome() {
+            clearIntervalsAndTimers();
+            currentQuestionIndex = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            isQuestionLocked = false;
+            showView('view-home');
+        }
+
+        function confirmReturnHome() {
+            // If quiz is currently active and not ended
+            const quizView = document.getElementById('view-quiz');
+            if (!quizView.classList.contains('hidden')) {
+                document.getElementById('modal-exit').classList.remove('hidden');
+            } else {
+                returnToHome();
+            }
+        }
+
+        function closeExitModal() {
+            document.getElementById('modal-exit').classList.add('hidden');
+        }
+
+        function executeReturnHome() {
+            closeExitModal();
+            returnToHome();
+        }
+
+        /* ----------------------------------------------------
+           STREAMING_CHUNK:Defining question rendering & selection logic...
+           ---------------------------------------------------- */
+        function loadQuestion(index) {
+            clearIntervalsAndTimers();
+            isQuestionLocked = false;
+
+            const qData = quizData[index];
+
+            // Render Header & Progress
+            document.getElementById('quiz-question-number').innerText = `SOAL ${index + 1} DARI ${quizData.length}`;
+            const progressPercent = Math.round(((index + 1) / quizData.length) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // Render Question Text
+            document.getElementById('question-text').innerText = `${qData.id}. ${qData.question}`;
+
+            // Render Options
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            const keys = ['A', 'B', 'C', 'D'];
+            keys.forEach(key => {
+                const isSelected = userAnswers[index] === key;
+                const optionBtn = document.createElement('div');
+                optionBtn.className = `option-card bg-white p-4 rounded-2xl flex items-center gap-3 ${isSelected ? 'selected' : ''}`;
+                optionBtn.onclick = () => selectOption(key);
+
+                optionBtn.innerHTML = `
+                    <div class="option-key w-8 h-8 rounded-xl bg-sky-light text-accent-blue font-bold text-sm flex items-center justify-center shrink-0 transition">
+                        ${key}
+                    </div>
+                    <div class="text-xs sm:text-sm font-medium text-text-dark leading-snug">
+                        ${qData.options[key]}
+                    </div>
+                `;
+                container.appendChild(optionBtn);
+            });
+
+            // Update Next / Finish button label
+            const nextBtnText = document.getElementById('next-btn-text');
+            const nextBtnIcon = document.getElementById('next-btn-icon');
+            if (index === quizData.length - 1) {
+                nextBtnText.innerText = "SELESAI";
+                nextBtnIcon.className = "fa-solid fa-check text-xs";
+            } else {
+                nextBtnText.innerText = "LANJUT";
+                nextBtnIcon.className = "fa-solid fa-chevron-right text-xs";
+            }
+
+            // Start 15s Timer
+            startTimer();
+        }
+
+        function selectOption(key) {
+            if (isQuestionLocked) return;
+
+            userAnswers[currentQuestionIndex] = key;
+
+            // Update UI selected highlight
+            const container = document.getElementById('options-container');
+            const optionCards = container.children;
+            const keys = ['A', 'B', 'C', 'D'];
+
+            for (let i = 0; i < optionCards.length; i++) {
+                if (keys[i] === key) {
+                    optionCards[i].classList.add('selected');
+                } else {
+                    optionCards[i].classList.remove('selected');
+                }
+            }
+        }
+
+        /* ----------------------------------------------------
+           STREAMING_CHUNK:Defining timer interval and auto-lock mechanics...
+           ---------------------------------------------------- */
+        function startTimer() {
+            timerSeconds = 15;
+            updateTimerUI();
+
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimerUI();
+
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeExpired();
+                }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            const timerText = document.getElementById('timer-text');
+            const timerBox = document.getElementById('timer-box');
+
+            timerText.innerText = timerSeconds;
+
+            if (timerSeconds <= 5) {
+                timerBox.classList.add('timer-warning');
+            } else {
+                timerBox.classList.remove('timer-warning');
+            }
+        }
+
+        function handleTimeExpired() {
+            isQuestionLocked = true;
+            showToast("Waktu habis! Soal otomatis dikunci.");
+
+            // Highlight locked state
+            const container = document.getElementById('options-container');
+            if (container) {
+                const cards = container.children;
+                for (let card of cards) {
+                    card.style.opacity = '0.7';
+                    card.style.pointerEvents = 'none';
+                }
+            }
+
+            // Automatically move to next question or finish
+            autoNextTimeout = setTimeout(() => {
+                if (currentQuestionIndex < quizData.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion(currentQuestionIndex);
+                } else {
+                    finishQuizCalculations();
+                }
+            }, 1200);
+        }
+
+        function clearIntervalsAndTimers() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            if (autoNextTimeout) {
+                clearTimeout(autoNextTimeout);
+                autoNextTimeout = null;
+            }
+            const timerBox = document.getElementById('timer-box');
+            if (timerBox) timerBox.classList.remove('timer-warning');
+        }
+
+        /* ----------------------------------------------------
+           STREAMING_CHUNK:Defining navigation actions and modal handles...
+           ---------------------------------------------------- */
+        function handleNextClick() {
+            if (isQuestionLocked) return;
+
+            // Check if user has selected an option
+            if (!userAnswers[currentQuestionIndex]) {
+                showToast("Silakan pilih salah satu jawaban terlebih dahulu.");
+                return;
+            }
+
+            // Lock current question answer
+            isQuestionLocked = true;
+            clearIntervalsAndTimers();
+
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            } else {
+                // On last question, show confirmation modal
+                document.getElementById('modal-finish').classList.remove('hidden');
+            }
+        }
+
+        function closeFinishModal() {
+            document.getElementById('modal-finish').classList.add('hidden');
+            isQuestionLocked = false;
+        }
+
+        function submitQuizConfirmed() {
+            closeFinishModal();
+            finishQuizCalculations();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = msg;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2000);
+        }
+
+        /* ----------------------------------------------------
+           STREAMING_CHUNK:Calculating scores and rendering result view...
+           ---------------------------------------------------- */
+        function finishQuizCalculations() {
+            clearIntervalsAndTimers();
+
+            let correctCount = 0;
+            let wrongCount = 0;
+
+            quizData.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns && userAns === q.answer) {
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            const finalScore = correctCount * 10;
+            const percentage = Math.round((finalScore / 100) * 100);
+
+            // Populate Result UI
+            document.getElementById('score-display').innerText = finalScore;
+            document.getElementById('correct-count').innerText = correctCount;
+            document.getElementById('wrong-count').innerText = wrongCount;
+            document.getElementById('percentage-badge').innerText = `Persentase Keberhasilan: ${percentage}%`;
+
+            // Feedback Message according to score range
+            const feedbackCard = document.getElementById('feedback-card');
+            if (finalScore >= 90) {
+                feedbackCard.className = "bg-emerald-50 border border-emerald-200 p-4 rounded-2xl max-w-md mx-auto mb-8 text-xs sm:text-sm font-semibold text-emerald-900 leading-relaxed";
+                feedbackCard.innerHTML = `<i class="fa-solid fa-star text-amber-400 mr-2 text-base"></i> "Luar biasa! Pemahamanmu tentang materi Perumpamaan Yesus sangat baik."`;
+            } else if (finalScore >= 80) {
+                feedbackCard.className = "bg-sky-light border border-sky-pastel p-4 rounded-2xl max-w-md mx-auto mb-8 text-xs sm:text-sm font-semibold text-text-dark leading-relaxed";
+                feedbackCard.innerHTML = `<i class="fa-solid fa-thumbs-up text-accent-blue mr-2 text-base"></i> "Bagus! Kamu sudah memahami sebagian besar materi Perumpamaan Yesus."`;
+            } else if (finalScore >= 70) {
+                feedbackCard.className = "bg-amber-50 border border-amber-200 p-4 rounded-2xl max-w-md mx-auto mb-8 text-xs sm:text-sm font-semibold text-amber-900 leading-relaxed";
+                feedbackCard.innerHTML = `<i class="fa-solid fa-book-bookmark text-amber-500 mr-2 text-base"></i> "Cukup baik! Pelajari kembali beberapa bagian materi agar pemahamanmu semakin kuat."`;
+            } else {
+                feedbackCard.className = "bg-rose-50 border border-rose-200 p-4 rounded-2xl max-w-md mx-auto mb-8 text-xs sm:text-sm font-semibold text-rose-900 leading-relaxed";
+                feedbackCard.innerHTML = `<i class="fa-solid fa-heart-pulse text-rose-500 mr-2 text-base"></i> "Jangan menyerah! Pelajari kembali materi dan pembahasan, kemudian coba ulangi kuis."`;
+            }
+
+            showView('view-result');
+            animateScore(finalScore);
+        }
+
+        function animateScore(targetScore) {
+            let current = 0;
+            const duration = 1000;
+            const stepTime = 30;
+            const steps = duration / stepTime;
+            const increment = targetScore / steps;
+
+            const scoreDisplay = document.getElementById('score-display');
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= targetScore) {
+                    scoreDisplay.innerText = targetScore;
+                    clearInterval(timer);
+                } else {
+                    scoreDisplay.innerText = Math.floor(current);
+                }
+            }, stepTime);
+        }
+
+        /* ----------------------------------------------------
+           STREAMING_CHUNK:Rendering discussion and review accordions...
+           ---------------------------------------------------- */
+        function showDiscussionView() {
+            showView('view-discussion');
+
+            const container = document.getElementById('discussion-list');
+            container.innerHTML = '';
+
+            quizData.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.answer;
+                const isUnanswered = userAns === null;
+
+                let statusBadge = '';
+                if (isCorrect) {
+                    statusBadge = `<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[11px] border border-emerald-200"><i class="fa-solid fa-check mr-1"></i> ✓ JAWABAN BENAR</span>`;
+                } else if (isUnanswered) {
+                    statusBadge = `<span class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 font-bold text-[11px] border border-gray-200"><i class="fa-solid fa-clock mr-1"></i> TIDAK DIJAWAB</span>`;
+                } else {
+                    statusBadge = `<span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 font-bold text-[11px] border border-rose-200"><i class="fa-solid fa-xmark mr-1"></i> ✕ JAWABAN SALAH</span>`;
+                }
+
+                const userAnsText = isUnanswered ? 'Tidak dijawab' : `${userAns}. ${q.options[userAns]}`;
+                const correctAnsText = `${q.answer}. ${q.options[q.answer]}`;
+
+                const card = document.createElement('div');
+                card.className = "bg-white/90 border border-sky-pastel/70 rounded-2xl p-4 sm:p-5 shadow-sm transition";
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="font-bold text-xs text-text-dark/60">SOAL ${idx + 1}</div>
+                        <div>${statusBadge}</div>
+                    </div>
+
+                    <h4 class="text-sm sm:text-base font-bold text-text-dark mb-4">
+                        ${q.question}
+                    </h4>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs sm:text-sm">
+                        <div class="p-3 rounded-xl ${isCorrect ? 'bg-emerald-50 border border-emerald-200 text-emerald-900' : 'bg-rose-50 border border-rose-200 text-rose-900'}">
+                            <div class="text-[10px] uppercase font-bold text-text-dark/60 mb-1">Jawaban Kamu:</div>
+                            <div class="font-semibold">${userAnsText}</div>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-sky-light border border-sky-pastel text-text-dark">
+                            <div class="text-[10px] uppercase font-bold text-accent-blue mb-1">Jawaban Benar:</div>
+                            <div class="font-semibold text-text-dark">${correctAnsText}</div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Toggle Button for Explanation -->
+                    <button onclick="toggleAccordion(${idx})" class="w-full flex items-center justify-between text-xs font-bold text-accent-blue bg-sky-light/60 hover:bg-sky-light px-4 py-2.5 rounded-xl border border-sky-pastel/50 transition">
+                        <span><i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> Lihat Pembahasan Singkat</span>
+                        <i id="accordion-icon-${idx}" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+
+                    <div id="accordion-content-${idx}" class="accordion-content">
+                        <div class="mt-3 p-3.5 bg-amber-50/60 border border-amber-200/60 rounded-xl text-xs text-text-dark/90 leading-relaxed">
+                            <strong>Pembahasan:</strong> ${q.explanation}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function toggleAccordion(index) {
+            const content = document.getElementById(`accordion-content-${index}`);
+            const icon = document.getElementById(`accordion-icon-${index}`);
+
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        window.onload = function() {
+            showView('view-home');
+        };
+    </script>
+</body>
+</html>
